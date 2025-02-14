@@ -38,7 +38,7 @@ navigator.serviceWorker.register(
     }
 
     if (serviceWorker) {
-      printState(serviceWorker..state);
+      printState(serviceWorker.state);
       
       serviceWorker.addEventListener('statechange',
         function(e) {
