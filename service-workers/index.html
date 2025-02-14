@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head><head>
+<head>
+  
+<head>
 <body>
 
 <p>
 Registration Status <em id="status"></em>
 </p>
+<p>
+State <em id="state"></em>
+</p>
 
 <script>
+function printState(state) {
+  document.getElementById('state').innerHTML = state;
+}
 
 navigator.serviceWorker.register(
-  'service-worker.js',
+'service-worker.js',
   {scope: './'}
-  ).then( function(serviceWorker) {
+).then( function(registration) {
+
+    var serviceWorker;
     document.getElementById('status').innerHTML =
       'successful';
-    }).catch( function(error) {
+    
+    if (registration.installing) {
+      serviceWorker = registration.installing;
+      printState('installing');
+    } else if (registration.waiting) {
+      serviceWorker = registration.waiting;
+      printState('waiting');
+    } else if (registration.active) {
+      serviceWorker = registration.active;
+      printState('active');
+    }
+
+    if (serviceWorker) {
+      printState(serviceWorker..state);
+      
+      serviceWorker.addEventListener('statechange',
+        function(e) {
+          printState(e.target.state);
+	});
+    }
+}).catch( function(error) {
         document.getElementById('status').innerHTML =
           error;
-    });
+});
 </script>
 </body>
 </html>
