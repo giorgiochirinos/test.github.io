@@ -7,10 +7,10 @@ navigator.serviceWorker.register(
   'service-worker.js',
   {scope: './'}
   ).then( function(serviceWorker) {
-    document.getElementById('status').inneHTML =
+    document.getElementById('status').innerHTML =
       'successful';
     }).catch( function(error) {
-        document.getElementById('status').inneHTML =
+        document.getElementById('status').innerHTML =
           error;
     });
 </script>
