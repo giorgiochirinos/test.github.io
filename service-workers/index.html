@@ -1,1 +1,18 @@
-Service Workers
+<!DOCTYPE html>
+<html>
+<head><head>
+<body>
+<script>
+navigator.serviceWorker.register(
+  'service-worker.js',
+  {scope: './'}
+  ).then( function(serviceWorker) {
+    document.getElementById('status').inneHTML =
+      'successful';
+    }).catch( function(error) {
+        document.getElementById('status').inneHTML =
+          error;
+    });
+</script>
+</body>
+</html>
